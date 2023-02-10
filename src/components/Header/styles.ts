@@ -6,7 +6,6 @@ export const HeaderContainer = styled.header`
   align-items: center;
   justify-content: space-between;
   padding: 2rem 10rem;
-  width: 100%;
 `
 
 export const MapPinAndCartContainer = styled.div`
