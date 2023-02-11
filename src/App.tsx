@@ -6,6 +6,8 @@ import { defaultTheme } from './styles/Themes/default'
 import { Header } from './components/Header'
 import { GlobalStyle } from './styles/globals'
 import { LandPageSection } from './components/LandingPage'
+import { CoffeeCardList } from './components/CoffeeCardList'
+import { menu } from './menu-data'
 
 function App() {
   return (
@@ -13,6 +15,7 @@ function App() {
       <GlobalStyle />
       <Header />
       <LandPageSection />
+      <CoffeeCardList menu={menu} />
     </ThemeProvider>
   )
 }

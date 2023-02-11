@@ -11,7 +11,7 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
-    font-size: 0.875rem;
+    font-size: 16px;
     padding: 0 10rem;
  }
 
