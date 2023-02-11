@@ -6,8 +6,8 @@ export const defaultTheme = {
   button: '#E6E5E5',
   hover: '#D7D5D5',
   label: '#8D8686',
-  text: '#403937',
-  subtitle: '#121214',
+  text: '#574F4D',
+  subtitle: '#403937',
   title: '#272221',
 
   'purple-dark': '#4B2995',
