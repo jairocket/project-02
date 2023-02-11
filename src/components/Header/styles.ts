@@ -15,18 +15,22 @@ export const MapPinAndCartContainer = styled.div`
 `
 
 export const MapPinContainer = styled.div`
-  padding: 0.45rem;
+  padding: 0.5rem;
   display: flex;
   flex-direction: row;
   align-items: center;
   background-color: ${(props) => props.theme['purple-light']};
+  border-radius: 6px;
   div {
-    margin-left: 0.25rem;
-    color: ${(props) => props.theme['purple']};
+    margin-left: 0.45rem;
+    color: ${(props) => props.theme['purple-dark']};
   }
 `
 
 export const ShoppingCartContainer = styled.div`
-  padding: 0.45rem;
+  display: flex;
+  padding: 0.5rem;
+  align-items: center;
   background-color: ${(props) => props.theme['yellow-light']};
+  border-radius: 6px;
 `
