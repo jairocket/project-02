@@ -5,6 +5,8 @@ import {
   TagsContainer,
   InputContainer,
   FormContainer,
+  InputButtonContainer,
+  CheckoutButtonContainer,
 } from './styles'
 
 export interface CoffeeCardProps {
@@ -35,17 +37,19 @@ export function CoffeeCard({
       <h6>{name}</h6>
       <p>{description}</p>
       <FormContainer>
-        <div>{`R$ ${price}`}</div>
-        <div>
-          <InputContainer>
+        <p>
+          R$ <span>{`${price}`}</span>
+        </p>
+        <InputContainer>
+          <InputButtonContainer>
             <Minus color="purple" />
-            <input type="number" />
+            <input type="number" disabled value={1} />
             <Plus color="purple" />
-            <button>
-              <ShoppingCart color="white" weight="fill" />{' '}
-            </button>
-          </InputContainer>
-        </div>
+          </InputButtonContainer>
+          <CheckoutButtonContainer>
+            <ShoppingCart color="white" weight="fill" />{' '}
+          </CheckoutButtonContainer>
+        </InputContainer>
       </FormContainer>
     </CoffeeCardContainer>
   )
