@@ -1,5 +1,11 @@
 import { Minus, Plus, ShoppingCart } from 'phosphor-react'
-import { CoffeeCardContainer } from './styles'
+import {
+  CoffeeCardContainer,
+  CoffeeImageContainer,
+  TagsContainer,
+  InputContainer,
+  FormContainer,
+} from './styles'
 
 export interface CoffeeCardProps {
   image: string
@@ -18,27 +24,29 @@ export function CoffeeCard({
 }: CoffeeCardProps) {
   return (
     <CoffeeCardContainer>
-      <div>
+      <CoffeeImageContainer>
         <img src={image} />
-      </div>
-      {tags.map((tag) => (
-        <div key={tag}>{tag}</div>
-      ))}
-      <div>{name}</div>
-      <div>{description}</div>
-      <div>
+      </CoffeeImageContainer>
+      <TagsContainer>
+        {tags.map((tag) => (
+          <span key={tag}>{tag}</span>
+        ))}
+      </TagsContainer>
+      <h6>{name}</h6>
+      <p>{description}</p>
+      <FormContainer>
         <div>{`R$ ${price}`}</div>
         <div>
-          <div>
+          <InputContainer>
             <Minus color="purple" />
             <input type="number" />
             <Plus color="purple" />
-          </div>
-          <button>
-            <ShoppingCart color="white" weight="fill" />{' '}
-          </button>
+            <button>
+              <ShoppingCart color="white" weight="fill" />{' '}
+            </button>
+          </InputContainer>
         </div>
-      </div>
+      </FormContainer>
     </CoffeeCardContainer>
   )
 }
