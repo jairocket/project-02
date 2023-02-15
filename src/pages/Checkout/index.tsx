@@ -1,7 +1,8 @@
+import { AddressForm } from '../../components/AdressForm'
 export function Checkout() {
   return (
     <div>
-      <p>Checkout</p>
+      <AddressForm />
     </div>
   )
 }
