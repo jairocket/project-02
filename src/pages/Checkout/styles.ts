@@ -1,3 +1,11 @@
 import styled from 'styled-components'
 
-export const Container = styled.div``
+export const Container = styled.div`
+  h2 {
+    font-family: 'Baloo 2';
+    color: ${(props) => props.theme['subtitle']};
+    line-height: 1.3;
+    margin-top: 40px;
+    margin-bottom: 15px;
+  }
+`

@@ -1,19 +1,35 @@
 import styled from 'styled-components'
 
 export const Form = styled.form`
+  gap: 0.75rem;
+`
+export const FormDiv = styled.div`
+  display: flex;
+  padding: 2.5rem;
+  flex-direction: column;
+  width: 40rem;
+  height: 23.25rem;
+  background-color: ${(props) => props.theme['card']};
+  border-radius: 6px;
+  margin-bottom: 0.75rem;
+`
+
+export const PaymentDiv = styled.div`
+  padding: 2.5rem;
+  height: 12, 9375rem;
+  width: 40rem;
+  background-color: ${(props) => props.theme['card']};
+  border-radius: 6px;
+`
+
+export const InputDiv = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: flex-start;
-  padding: 2.5rem;
   gap: 0.75rem;
-
-  width: 40rem;
-  height: 23.25rem;
-
-  background-color: ${(props) => props.theme['card']};
-  border-radius: 6px;
 `
+
 const BaseInput = styled.input`
   padding: 0.75rem;
   height: 4.5rem;
@@ -38,4 +54,34 @@ export const CityInput = styled(BaseInput)`
 `
 export const UfInput = styled(BaseInput)`
   width: 60px;
+`
+
+export const ButtonInput = styled(BaseInput)`
+  width: 178.67px;
+  height: 51px;
+`
+export const ButtonGroup = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+`
+
+export const AddressFormTitle = styled.div`
+  display: flex;
+  gap: 0.25rem;
+  div {
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Roboto';
+    line-height: 1.3;
+    margin-bottom: 1.5rem;
+    h6 {
+      font-size: 1rem;
+      color: ${(props) => props.theme['subtitle']};
+    }
+
+    p {
+      font-size: 0.875rem;
+      color: ${(props) => props.theme['text']};
+    }
+  }
 `
