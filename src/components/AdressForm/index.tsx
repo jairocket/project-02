@@ -19,6 +19,7 @@ import {
   InputDiv,
   PaymentDiv,
   ButtonGroup,
+  RadioButton,
 } from './styles'
 import { defaultTheme } from '../../styles/Themes/default'
 
@@ -32,11 +33,24 @@ export function AddressForm() {
       bairro: '',
       cidade: '',
       uf: '',
+      pagamento: '',
     },
   })
   const { handleSubmit, watch, register } = addressForm
+
+  const onsubmit = (data: {
+    cep: string
+    rua: string
+    numero: string
+    complemento: string
+    bairro: string
+    cidade: string
+    uf: string
+    pagamento: string
+  }) => console.log(data)
+
   return (
-    <Form onSubmit={() => console.log('form')}>
+    <Form onSubmit={handleSubmit(onsubmit)}>
       <FormDiv>
         <AddressFormTitle>
           <MapPinLine weight="bold" color={defaultTheme['yellow-dark']} />
@@ -97,18 +111,47 @@ export function AddressForm() {
           </div>
         </AddressFormTitle>
         <ButtonGroup>
-          <label htmlFor="credito">
-            <CreditCard /> CARTÃO DE CRÉDITO
-          </label>
-          <ButtonInput type="radio" />
-          <label htmlFor="credito">
-            <Bank /> CARTÃO DE DÉBITO
-          </label>
-          <ButtonInput type="radio" />
-          <label htmlFor="credito">
-            <Money /> DINHEIRO
-          </label>
-          <ButtonInput type="radio" />
+          <RadioButton>
+            <ButtonInput
+              id="pagamento"
+              type="radio"
+              value={'crédito'}
+              {...register('pagamento')}
+            />
+            <label htmlFor="credito">
+              <div>
+                <CreditCard color={defaultTheme['purple']} /> CARTÃO DE CRÉDITO
+              </div>
+            </label>
+          </RadioButton>
+          <RadioButton>
+            <ButtonInput
+              id="pagamento"
+              type="radio"
+              value={'débito'}
+              {...register('pagamento')}
+            />
+
+            <label htmlFor="debito">
+              <div>
+                <Bank color={defaultTheme['purple']} /> CARTÃO DE DÉBITO
+              </div>
+            </label>
+          </RadioButton>
+
+          <RadioButton>
+            <ButtonInput
+              id="pagamento"
+              type="radio"
+              value={'dinheiro'}
+              {...register('pagamento')}
+            />
+            <label htmlFor="dinheiro">
+              <div>
+                <Money color={defaultTheme['purple']} /> DINHEIRO
+              </div>
+            </label>
+          </RadioButton>
         </ButtonGroup>
       </PaymentDiv>
     </Form>
