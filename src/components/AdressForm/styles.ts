@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 export const Form = styled.form`
   gap: 0.75rem;
+  margin-bottom: 5rem;
 `
 export const FormDiv = styled.div`
   display: flex;

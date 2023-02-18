@@ -1,11 +1,11 @@
-import { Minus, Plus, ShoppingCart } from 'phosphor-react'
+import { ShoppingCart } from 'phosphor-react'
+import { CoffeeAmount } from '../CoffeeAmount'
 import {
   CoffeeCardContainer,
   CoffeeImageContainer,
   TagsContainer,
   InputContainer,
   FormContainer,
-  InputButtonContainer,
   CheckoutButtonContainer,
 } from './styles'
 
@@ -23,6 +23,7 @@ export function CoffeeCard({
   name,
   description,
   price,
+  amount,
 }: CoffeeCardProps) {
   return (
     <CoffeeCardContainer>
@@ -41,11 +42,7 @@ export function CoffeeCard({
           R$ <span>{`${price}`}</span>
         </p>
         <InputContainer>
-          <InputButtonContainer>
-            <Minus color="purple" />
-            <input type="number" disabled value={1} />
-            <Plus color="purple" />
-          </InputButtonContainer>
+          <CoffeeAmount amount={amount} />
           <CheckoutButtonContainer>
             <ShoppingCart color="white" weight="fill" />{' '}
           </CheckoutButtonContainer>
