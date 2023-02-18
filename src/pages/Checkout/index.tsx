@@ -1,12 +1,19 @@
 import { AddressForm } from '../../components/AdressForm'
-import { SelelectedItem } from '../../components/SelectedItem'
-import { Container } from './styles'
+import { Container, CheckoutSummary } from './styles'
 import tradicional from '../../assets/coffee/expresso-tradicional.svg'
-import { CheckoutForm } from '../../components/AdressForm/CheckoutForm'
+import { CheckoutForm } from '../../components/CheckoutForm'
 
 const selectedCoffee = [
   {
+    id: 1,
     name: 'Expresso Tradicional',
+    amount: 1,
+    total: '9,90',
+    image: tradicional,
+  },
+  {
+    id: 6,
+    name: `Latte`,
     amount: 1,
     total: '9,90',
     image: tradicional,
@@ -22,7 +29,9 @@ export function Checkout() {
       </div>
       <div>
         <h2>Cafés selecionados</h2>
-        <CheckoutForm selected={selectedCoffee} />
+        <CheckoutSummary>
+          <CheckoutForm selected={selectedCoffee} />
+        </CheckoutSummary>
       </div>
     </Container>
   )

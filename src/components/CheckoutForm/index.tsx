@@ -1,8 +1,8 @@
-import { Divide } from 'phosphor-react'
-import tradicional from '../../assets/coffee/expresso-tradicional.svg'
-import { SelelectedItem } from '../../SelectedItem'
+import { SelelectedItem } from '../SelectedItem'
+import { SubmitButton, Table, CheckoutContainer } from './styles'
 
 interface SelectedCoffee {
+  id: number
   image: string
   amount?: number
   total: string
@@ -14,42 +14,46 @@ interface SelectedCoffeeList {
 }
 export function CheckoutForm({ selected }: SelectedCoffeeList) {
   return (
-    <>
+    <CheckoutContainer>
       <div>
         {selected.map((coffee) => {
           return (
-            <>
+            <div key={coffee.id}>
               <SelelectedItem
                 name={coffee.name}
                 amount={coffee.amount}
                 total={coffee.total}
                 image={coffee.image}
               />
-            </>
+            </div>
           )
         })}
       </div>
       <div>
-        <table>
+        <Table>
           <tbody>
             <tr>
               <td>Total de bens</td>
-              <td>R$ 29,70</td>
+              <td>
+                <span>R$ 29,70</span>{' '}
+              </td>
             </tr>
             <tr>
               <td>Entrega</td>
-              <td>R$ 3,50</td>
+              <td>
+                <span>R$ 3,50</span>{' '}
+              </td>
             </tr>
-            <tfoot>
-              <tr>
-                <td>Total</td>
-                <td>R$ 33,20</td>
-              </tr>
-            </tfoot>
           </tbody>
-        </table>
-        <button type="submit">CONFIRMAR PEDIDO</button>
+          <tfoot>
+            <tr>
+              <td>Total</td>
+              <td>R$ 33,20</td>
+            </tr>
+          </tfoot>
+        </Table>
+        <SubmitButton type="submit">CONFIRMAR PEDIDO</SubmitButton>
       </div>
-    </>
+    </CheckoutContainer>
   )
 }

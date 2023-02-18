@@ -84,6 +84,7 @@ export function AddressForm() {
             placeholder="Complemento"
             {...register('complemento')}
           />
+
           <DefaultInput
             type="text"
             id="bairro"
