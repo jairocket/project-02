@@ -34,3 +34,19 @@ export const ShoppingCartContainer = styled.div`
   background-color: ${(props) => props.theme['yellow-light']};
   border-radius: 6px;
 `
+export const QuantityContainer = styled.div`
+  position: relative;
+  bottom: 0.25rem;
+
+  right: 1.65rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: ${(props) => props.theme['white']};
+  background-color: ${(props) => props.theme['yellow-dark']};
+  border-radius: 50%;
+  width: 1.25rem;
+  height: 1.25rem;
+`

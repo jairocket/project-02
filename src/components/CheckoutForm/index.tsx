@@ -5,7 +5,8 @@ import { SelelectedItem } from '../SelectedItem'
 import { SubmitButton, Table, CheckoutContainer } from './styles'
 
 export function CheckoutForm() {
-  const { coffeeCart } = useContext(CheckoutContext)
+  const { coffeeCart, parsedPricedItems, parsedBill, parsedDelivery } =
+    useContext(CheckoutContext)
 
   return (
     <CheckoutContainer>
@@ -30,20 +31,20 @@ export function CheckoutForm() {
             <tr>
               <td>Total de bens</td>
               <td>
-                <span>R$ 29,70</span>{' '}
+                <span>{`${parsedPricedItems}`}</span>{' '}
               </td>
             </tr>
             <tr>
               <td>Entrega</td>
               <td>
-                <span>R$ 3,50</span>{' '}
+                <span>{`${parsedDelivery}`}</span>{' '}
               </td>
             </tr>
           </tbody>
           <tfoot>
             <tr>
               <td>Total</td>
-              <td>R$ 33,20</td>
+              <td>{`${parsedBill}`}</td>
             </tr>
           </tfoot>
         </Table>

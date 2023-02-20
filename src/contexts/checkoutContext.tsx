@@ -1,13 +1,16 @@
 import { createContext, ReactNode, useState } from 'react'
-import { useFormContext } from 'react-hook-form'
+import { moneyFormater } from '../utils'
 import { menu } from '../menu-data'
-import { useCoffeeUnitsForm } from './formContext'
 
 interface SelectedCoffeeData {
   coffeeCart: SelectedCoffee[]
   addCoffeeToCart: (name: string, cofeeUnits: number) => void
   removeCoffeeFromCart: (name: string) => void
   updateCoffeeUnits: (name: string, cofeeUnits: number) => void
+  totalCart: number
+  parsedPricedItems: string
+  parsedBill: string
+  parsedDelivery: string
 }
 
 interface SelectedCoffee {
@@ -29,22 +32,38 @@ export const CheckoutContextProvider = ({
   const [coffeeCart, setCoffeeCart] = useState([] as SelectedCoffee[])
 
   const updateCoffeeUnits = (name: string, coffeeUnits: number) => {
-    const [coffee] = coffeeCart.filter((item) => name === item.name)
-    const otherCoffee = coffeeCart.filter((item) => name !== item.name)
-    if (coffee) {
-      coffee.coffeeUnits = coffeeUnits
-      coffee.coffeeTotal = `${coffeeUnits * 9.9}0`
+    const updatedCart = coffeeCart.map((item) => {
+      if (name === item.name) {
+        item.coffeeUnits = coffeeUnits
+        item.coffeeTotal = moneyFormater(coffeeUnits * 9.9)
+      }
+      return item
+    })
 
-      setCoffeeCart([...otherCoffee, coffee])
-    }
+    setCoffeeCart([...updatedCart])
   }
+
+  const totalCart =
+    coffeeCart.length > 0
+      ? coffeeCart.reduce((total, subtotal) => total + subtotal.coffeeUnits, 0)
+      : 0
+
+  const totalPriceItems = totalCart * 9.9
+
+  const delivery = totalPriceItems > 0 ? 3.5 : 0
+
+  const bill = totalPriceItems + delivery
+
+  const parsedPricedItems = moneyFormater(totalPriceItems)
+  const parsedDelivery = moneyFormater(delivery)
+  const parsedBill = moneyFormater(bill)
 
   const addCoffeeToCart = (name: string, coffeeUnits: number) => {
     const [selectedCoffee] = menu.filter((item) => name === item.name)
-    const coffeeTotal = () => coffeeUnits * 9.9
+    const coffeeTotal = coffeeUnits * 9.9
     const newCoffee = {
       coffeeUnits,
-      coffeeTotal: `${coffeeTotal()}0`,
+      coffeeTotal: moneyFormater(+coffeeTotal),
       name: selectedCoffee.name,
       image: selectedCoffee.image,
     }
@@ -63,6 +82,10 @@ export const CheckoutContextProvider = ({
         addCoffeeToCart,
         removeCoffeeFromCart,
         updateCoffeeUnits,
+        totalCart,
+        parsedPricedItems,
+        parsedBill,
+        parsedDelivery,
       }}
     >
       {children}

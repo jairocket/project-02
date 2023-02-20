@@ -4,11 +4,15 @@ import {
   HeaderContainer,
   MapPinAndCartContainer,
   MapPinContainer,
+  QuantityContainer,
   ShoppingCartContainer,
 } from './styles'
 import { defaultTheme } from '../../styles/Themes/default'
+import { useContext } from 'react'
+import { CheckoutContext } from '../../contexts/checkoutContext'
 
 export function Header() {
+  const { totalCart } = useContext(CheckoutContext)
   return (
     <HeaderContainer>
       <img src={logo} alt={'coffee delivery logo'} />
@@ -20,6 +24,7 @@ export function Header() {
         <ShoppingCartContainer>
           <ShoppingCart weight="fill" color={defaultTheme['yellow-dark']} />
         </ShoppingCartContainer>
+        <QuantityContainer>{totalCart}</QuantityContainer>
       </MapPinAndCartContainer>
     </HeaderContainer>
   )

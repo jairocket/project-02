@@ -23,7 +23,7 @@ interface SelectedCoffee {
   name: string
 }
 
-export function SelelectedItem({ image, total, name, amount }: SelectedCoffee) {
+export function SelelectedItem({ image, total, name }: SelectedCoffee) {
   const { removeCoffeeFromCart } = useContext(CheckoutContext)
   const coffeeUnitsForm = useCoffeeUnitsForm()
 
@@ -47,7 +47,7 @@ export function SelelectedItem({ image, total, name, amount }: SelectedCoffee) {
             </InputButtonContainer>
           </div>
         </ImageDataContainer>
-        <PriceContainer>R$ {total}</PriceContainer>
+        <PriceContainer>{total}</PriceContainer>
       </ItemDataContainer>
       <Divider />
     </ItemContainer>
