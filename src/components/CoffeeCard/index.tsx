@@ -1,7 +1,6 @@
 import { ShoppingCart } from 'phosphor-react'
 import { CoffeeAmount } from '../CoffeeAmount'
 import { useNavigate } from 'react-router-dom'
-import { useCoffeeUnitsForm } from '../../contexts/formContext'
 
 import {
   CoffeeCardContainer,
@@ -14,6 +13,7 @@ import {
 import { FormProvider } from 'react-hook-form'
 import { useContext } from 'react'
 import { CheckoutContext } from '../../contexts/checkoutContext'
+import { useCoffeeUnitsForm } from '../../contexts/formContext'
 
 export interface CoffeeCardProps {
   image: string
@@ -36,7 +36,6 @@ export function CoffeeCard({
   const coffeeUnitsForm = useCoffeeUnitsForm()
 
   const { handleSubmit } = coffeeUnitsForm
-
   const onSubmit = (data: { amount: number }) => {
     addCoffeeToCart(name, data.amount)
     navigate('/checkout')
