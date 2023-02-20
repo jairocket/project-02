@@ -18,12 +18,12 @@ import { FormProvider } from 'react-hook-form'
 interface SelectedCoffee {
   id?: number
   image: string
-  amount?: number
+  amount: number
   total: string
   name: string
 }
 
-export function SelelectedItem({ image, total, name }: SelectedCoffee) {
+export function SelelectedItem({ image, total, name, amount }: SelectedCoffee) {
   const { removeCoffeeFromCart } = useContext(CheckoutContext)
   const coffeeUnitsForm = useCoffeeUnitsForm()
 
@@ -38,7 +38,7 @@ export function SelelectedItem({ image, total, name }: SelectedCoffee) {
             <CoffeeTitle>{name}</CoffeeTitle>
             <InputButtonContainer>
               <FormProvider {...coffeeUnitsForm}>
-                <CoffeeAmount />
+                <CoffeeAmount name={name} />
               </FormProvider>
               <button type="button" onClick={() => removeCoffeeFromCart(name)}>
                 <Trash color={defaultTheme.purple} />

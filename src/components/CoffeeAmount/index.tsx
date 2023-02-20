@@ -1,44 +1,66 @@
 import { Minus, Plus } from 'phosphor-react'
 import { Button, InputButtonContainer } from './styles'
-import { useForm, useFormContext } from 'react-hook-form'
-import { useContext } from 'react'
+import { useFormContext } from 'react-hook-form'
+import { useContext, useEffect } from 'react'
 import { CheckoutContext } from '../../contexts/checkoutContext'
-import { useCoffeeUnitsForm } from '../../contexts/formContext'
 
-export function CoffeeAmount() {
-  const coffeeUnitsForm = useCoffeeUnitsForm()
+interface CoffeeAmountProps {
+  name: string
+}
+
+export function CoffeeAmount({ name }: CoffeeAmountProps) {
+  const {
+    addCoffeeToCart,
+    removeCoffeeFromCart,
+    coffeeCart,
+    updateCoffeeUnits,
+  } = useContext(CheckoutContext)
+
+  const coffee = coffeeCart.find((coffee) => coffee.name === name)
+  const units = coffee?.coffeeUnits
 
   const { register, setValue, getValues } = useFormContext()
 
+  useEffect(() => {
+    if (units) {
+      setValue(`amount`, coffee.coffeeUnits)
+    }
+  }, [units])
+
   const handleIncreaseAmount = () => {
-    return getValues('amount') + 1
+    const newValue = getValues('amount') + 1
+    const coffee = coffeeCart.find((coffee) => coffee.name === name)
+    if (coffee) {
+      updateCoffeeUnits(name, newValue)
+    } else {
+      addCoffeeToCart(name, newValue)
+    }
   }
 
   const handleDeCreaseAmount = () => {
-    if (getValues('amount') > 0) {
-      return getValues('amount') - 1
+    const newValue = getValues('amount') - 1
+
+    if (newValue > 0) {
+      updateCoffeeUnits(name, newValue)
+      return
     }
-    return 0
+    removeCoffeeFromCart(name)
   }
 
   return (
     <InputButtonContainer>
-      <Button
-        type={'button'}
-        onClick={() => setValue('amount', handleDeCreaseAmount())}
-      >
+      <Button type={'button'} onClick={() => handleDeCreaseAmount()}>
         <Minus color="purple" />
       </Button>
       <input
         type="number"
         min={0}
         disabled
-        {...register('amount', { valueAsNumber: true })}
+        {...register('amount', {
+          valueAsNumber: true,
+        })}
       />
-      <Button
-        type={'button'}
-        onClick={() => setValue('amount', handleIncreaseAmount())}
-      >
+      <Button type={'button'} onClick={() => handleIncreaseAmount()}>
         <Plus color="purple" />
       </Button>
     </InputButtonContainer>

@@ -7,7 +7,6 @@ import { SubmitButton, Table, CheckoutContainer } from './styles'
 export function CheckoutForm() {
   const { coffeeCart } = useContext(CheckoutContext)
 
-  console.log(coffeeCart)
   return (
     <CheckoutContainer>
       <div>

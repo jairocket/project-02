@@ -1,10 +1,13 @@
 import { createContext, ReactNode, useState } from 'react'
+import { useFormContext } from 'react-hook-form'
 import { menu } from '../menu-data'
+import { useCoffeeUnitsForm } from './formContext'
 
 interface SelectedCoffeeData {
   coffeeCart: SelectedCoffee[]
   addCoffeeToCart: (name: string, cofeeUnits: number) => void
   removeCoffeeFromCart: (name: string) => void
+  updateCoffeeUnits: (name: string, cofeeUnits: number) => void
 }
 
 interface SelectedCoffee {
@@ -25,10 +28,18 @@ export const CheckoutContextProvider = ({
 }: CheckoutContextProviderProps) => {
   const [coffeeCart, setCoffeeCart] = useState([] as SelectedCoffee[])
 
-  const addCoffeeToCart = (name: string, coffeeUnits: number) => {
-    // const [coffee] = coffeeCart.filter((item) => name === item.name)
+  const updateCoffeeUnits = (name: string, coffeeUnits: number) => {
+    const [coffee] = coffeeCart.filter((item) => name === item.name)
+    const otherCoffee = coffeeCart.filter((item) => name !== item.name)
+    if (coffee) {
+      coffee.coffeeUnits = coffeeUnits
+      coffee.coffeeTotal = `${coffeeUnits * 9.9}0`
 
-    // if (!coffee) {
+      setCoffeeCart([...otherCoffee, coffee])
+    }
+  }
+
+  const addCoffeeToCart = (name: string, coffeeUnits: number) => {
     const [selectedCoffee] = menu.filter((item) => name === item.name)
     const coffeeTotal = () => coffeeUnits * 9.9
     const newCoffee = {
@@ -37,13 +48,7 @@ export const CheckoutContextProvider = ({
       name: selectedCoffee.name,
       image: selectedCoffee.image,
     }
-
     setCoffeeCart([...coffeeCart, newCoffee])
-    console.log(coffeeCart)
-    // }
-
-    // coffee.coffeeUnits = coffeeUnits
-    // setCoffeeCart([...coffeeCart, coffee])
   }
 
   const removeCoffeeFromCart = (name: string) => {
@@ -53,7 +58,12 @@ export const CheckoutContextProvider = ({
 
   return (
     <CheckoutContext.Provider
-      value={{ coffeeCart, addCoffeeToCart, removeCoffeeFromCart }}
+      value={{
+        coffeeCart,
+        addCoffeeToCart,
+        removeCoffeeFromCart,
+        updateCoffeeUnits,
+      }}
     >
       {children}
     </CheckoutContext.Provider>

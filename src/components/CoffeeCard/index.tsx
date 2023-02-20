@@ -1,6 +1,6 @@
 import { ShoppingCart } from 'phosphor-react'
 import { CoffeeAmount } from '../CoffeeAmount'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, NavLink } from 'react-router-dom'
 
 import {
   CoffeeCardContainer,
@@ -21,7 +21,6 @@ export interface CoffeeCardProps {
   name: string
   description: string
   price: string
-  amount?: number
 }
 
 export function CoffeeCard({
@@ -31,15 +30,15 @@ export function CoffeeCard({
   description,
   price,
 }: CoffeeCardProps) {
-  const { addCoffeeToCart } = useContext(CheckoutContext)
-  const navigate = useNavigate()
+  const { coffeeCart } = useContext(CheckoutContext)
+
   const coffeeUnitsForm = useCoffeeUnitsForm()
 
-  const { handleSubmit } = coffeeUnitsForm
-  const onSubmit = (data: { amount: number }) => {
-    addCoffeeToCart(name, data.amount)
-    navigate('/checkout')
-  }
+  // const { handleSubmit } = coffeeUnitsForm
+  // const onSubmit = (/* data: { amount: number } */) => {
+  //   // addCoffeeToCart(name, data.amount)
+  //   navigate('/checkout')
+  // }
 
   return (
     <CoffeeCardContainer>
@@ -54,18 +53,19 @@ export function CoffeeCard({
       <h6>{name}</h6>
       <p>{description}</p>
 
-      <FormContainer onSubmit={handleSubmit(onSubmit)}>
+      <FormContainer /*onSubmit={handleSubmit(onSubmit)}*/>
         <p>
           R$ <span>{`${price}`}</span>
         </p>
         <InputContainer>
           <FormProvider {...coffeeUnitsForm}>
-            <CoffeeAmount />
+            <CoffeeAmount name={name} />
           </FormProvider>
-
-          <CheckoutButtonContainer>
-            <ShoppingCart color="white" weight="fill" />{' '}
-          </CheckoutButtonContainer>
+          <NavLink to={'/checkout'}>
+            <CheckoutButtonContainer type="button" /*onClick={() => onSubmit}*/>
+              <ShoppingCart color="white" weight="fill" />{' '}
+            </CheckoutButtonContainer>
+          </NavLink>
         </InputContainer>
       </FormContainer>
     </CoffeeCardContainer>
