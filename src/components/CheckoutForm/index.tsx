@@ -1,34 +1,30 @@
+import { useContext } from 'react'
+import { NavLink } from 'react-router-dom'
+import { CheckoutContext } from '../../contexts/checkoutContext'
 import { SelelectedItem } from '../SelectedItem'
 import { SubmitButton, Table, CheckoutContainer } from './styles'
 
-interface SelectedCoffee {
-  id: number
-  image: string
-  amount?: number
-  total: string
-  name: string
-}
+export function CheckoutForm() {
+  const { coffeeCart } = useContext(CheckoutContext)
 
-interface SelectedCoffeeList {
-  selected: SelectedCoffee[]
-}
-export function CheckoutForm({ selected }: SelectedCoffeeList) {
+  console.log(coffeeCart)
   return (
     <CheckoutContainer>
       <div>
-        {selected.map((coffee) => {
+        {coffeeCart.map((coffee) => {
           return (
-            <div key={coffee.id}>
+            <div key={coffee.name}>
               <SelelectedItem
                 name={coffee.name}
-                amount={coffee.amount}
-                total={coffee.total}
+                amount={coffee.coffeeUnits}
+                total={coffee.coffeeTotal}
                 image={coffee.image}
               />
             </div>
           )
         })}
       </div>
+
       <div>
         <Table>
           <tbody>
@@ -52,7 +48,9 @@ export function CheckoutForm({ selected }: SelectedCoffeeList) {
             </tr>
           </tfoot>
         </Table>
-        <SubmitButton type="submit">CONFIRMAR PEDIDO</SubmitButton>
+        <NavLink to={'/confirmation'}>
+          <SubmitButton type="button">CONFIRMAR PEDIDO</SubmitButton>
+        </NavLink>
       </div>
     </CheckoutContainer>
   )

@@ -1,6 +1,7 @@
 import { Trash } from 'phosphor-react'
 import { CoffeeAmount } from '../CoffeeAmount'
 import { defaultTheme } from '../../styles/Themes/default'
+import { useCoffeeUnitsForm } from '../../contexts/formContext'
 import {
   ItemDataContainer,
   InputButtonContainer,
@@ -10,6 +11,9 @@ import {
   ImageDataContainer,
   PriceContainer,
 } from './styles'
+import { useContext } from 'react'
+import { CheckoutContext } from '../../contexts/checkoutContext'
+import { FormProvider } from 'react-hook-form'
 
 interface SelectedCoffee {
   id?: number
@@ -19,7 +23,10 @@ interface SelectedCoffee {
   name: string
 }
 
-export function SelelectedItem({ image, amount, total, name }: SelectedCoffee) {
+export function SelelectedItem({ image, total, name }: SelectedCoffee) {
+  const { removeCoffeeFromCart } = useContext(CheckoutContext)
+  const coffeeUnitsForm = useCoffeeUnitsForm()
+
   return (
     <ItemContainer>
       <ItemDataContainer>
@@ -30,8 +37,10 @@ export function SelelectedItem({ image, amount, total, name }: SelectedCoffee) {
           <div>
             <CoffeeTitle>{name}</CoffeeTitle>
             <InputButtonContainer>
-              <CoffeeAmount amount={amount} />
-              <button type="button">
+              <FormProvider {...coffeeUnitsForm}>
+                <CoffeeAmount />
+              </FormProvider>
+              <button type="button" onClick={() => removeCoffeeFromCart(name)}>
                 <Trash color={defaultTheme.purple} />
                 REMOVER
               </button>

@@ -4,15 +4,17 @@ import { defaultTheme } from './styles/Themes/default'
 import { Header } from './components/Header'
 import { GlobalStyle } from './styles/globals'
 
-import { Main } from './pages/Main'
 import { Router } from './Router'
+import { CheckoutContextProvider } from './contexts/checkoutContext'
 
 function App() {
   return (
     <BrowserRouter>
       <ThemeProvider theme={defaultTheme}>
-        <Header />
-        <Router />
+        <CheckoutContextProvider>
+          <Header />
+          <Router />
+        </CheckoutContextProvider>
         <GlobalStyle />
       </ThemeProvider>
     </BrowserRouter>

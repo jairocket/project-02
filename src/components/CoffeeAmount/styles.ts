@@ -32,3 +32,6 @@ export const InputButtonContainer = styled.div`
     color: ${(props) => props.theme['title']};
   }
 `
+export const Button = styled.button`
+  border: 0;
+`

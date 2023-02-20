@@ -5,14 +5,12 @@ import { CheckoutForm } from '../../components/CheckoutForm'
 
 const selectedCoffee = [
   {
-    id: 1,
     name: 'Expresso Tradicional',
     amount: 1,
     total: '9,90',
     image: tradicional,
   },
   {
-    id: 6,
     name: `Latte`,
     amount: 1,
     total: '9,90',
@@ -30,7 +28,7 @@ export function Checkout() {
       <div>
         <h2>Cafés selecionados</h2>
         <CheckoutSummary>
-          <CheckoutForm selected={selectedCoffee} />
+          <CheckoutForm />
         </CheckoutSummary>
       </div>
     </Container>
