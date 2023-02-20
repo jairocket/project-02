@@ -49,7 +49,7 @@ export function CheckoutForm() {
           </tfoot>
         </Table>
         <NavLink to={'/confirmation'}>
-          <SubmitButton type="button">CONFIRMAR PEDIDO</SubmitButton>
+          <SubmitButton type="submit">CONFIRMAR PEDIDO</SubmitButton>
         </NavLink>
       </div>
     </CheckoutContainer>

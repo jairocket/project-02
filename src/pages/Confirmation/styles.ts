@@ -51,3 +51,13 @@ export const ClockBackGround = styled(IconBackground)`
 export const CurrencyBackGround = styled(IconBackground)`
   background-color: ${(props) => props.theme['yellow-dark']};
 `
+export const Title = styled.h1`
+  font-family: 'Baloo 2';
+  font-weight: 800;
+  font-size: 2rem;
+  color: ${(props) => props.theme['yellow-dark']};
+`
+export const Subtitle = styled.p`
+  color: ${(props) => props.theme['subtitle']};
+  font-size: 1.25rem;
+`

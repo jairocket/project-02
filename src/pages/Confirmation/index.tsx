@@ -8,13 +8,15 @@ import {
   CurrencyBackGround,
   FirstContainer,
   PinBackground,
+  Subtitle,
+  Title,
 } from './styles'
 
 export function Confirmation() {
   return (
     <div>
-      <h1>Uhu! Pedido Confirmado</h1>
-      <p>Agora é só aguardar que logo o café chega até você</p>
+      <Title>Uhu! Pedido Confirmado</Title>
+      <Subtitle>Agora é só aguardar que logo o café chega até você</Subtitle>
 
       <ConfirmationContainer>
         <FirstContainer>

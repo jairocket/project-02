@@ -36,7 +36,7 @@ export function AddressForm() {
       pagamento: '',
     },
   })
-  const { handleSubmit, watch, register } = addressForm
+  const { handleSubmit, register } = addressForm
 
   const onsubmit = (data: {
     cep: string
@@ -64,12 +64,14 @@ export function AddressForm() {
             type="text"
             id="cep"
             placeholder="CEP"
+            required
             {...register('cep')}
           />
           <StreetInput
             type="text"
             id="rua"
             placeholder="Rua"
+            required
             {...register('rua')}
           />
           <DefaultInput
@@ -90,12 +92,14 @@ export function AddressForm() {
             id="bairro"
             placeholder="Bairro"
             {...register('bairro')}
+            required
           />
           <CityInput
             type="text"
             id="cidade"
             placeholder="Cidade"
             {...register('cidade')}
+            required
           />
           <UfInput type="text" id="uf" placeholder="UF" {...register('uf')} />
         </InputDiv>
@@ -118,6 +122,7 @@ export function AddressForm() {
               type="radio"
               value={'crédito'}
               {...register('pagamento')}
+              required
             />
             <label htmlFor="credito">
               <div>
@@ -131,6 +136,7 @@ export function AddressForm() {
               type="radio"
               value={'débito'}
               {...register('pagamento')}
+              required
             />
 
             <label htmlFor="debito">
@@ -146,6 +152,7 @@ export function AddressForm() {
               type="radio"
               value={'dinheiro'}
               {...register('pagamento')}
+              required
             />
             <label htmlFor="dinheiro">
               <div>
