@@ -1,5 +1,7 @@
 import { Clock, CurrencyDollar, MapPin } from 'phosphor-react'
+import { useContext } from 'react'
 import confirmation from '../../assets/confirmation.svg'
+import { AddressContext } from '../../contexts/addressContext'
 import {
   AdressContainer,
   BlockInfo,
@@ -13,6 +15,8 @@ import {
 } from './styles'
 
 export function Confirmation() {
+  const { address } = useContext(AddressContext)
+
   return (
     <div>
       <Title>Uhu! Pedido Confirmado</Title>
@@ -27,9 +31,12 @@ export function Confirmation() {
               </PinBackground>
               <div>
                 <p>
-                  Entrega em <span>Rua João Daniel Martinelli, 102</span>
+                  Entrega em{' '}
+                  <span>
+                    {`Rua ${address.rua}, ${address.numero} ${address.complemento}`}
+                  </span>
                 </p>
-                <p>Farrapos - Porto Alegre, RS</p>
+                <p>{`${address.bairro} - ${address.cidade}, ${address.uf}`}</p>
               </div>
             </BlockInfo>
             <BlockInfo>
@@ -47,7 +54,7 @@ export function Confirmation() {
               </CurrencyBackGround>
               <div>
                 <p>Pagamento na entrega</p>
-                <span>Cartão de Crédito</span>
+                <span>{`${address.pagamento}`}</span>
               </div>
             </BlockInfo>
           </AdressContainer>

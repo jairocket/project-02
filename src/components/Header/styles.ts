@@ -11,6 +11,8 @@ export const HeaderContainer = styled.header`
 export const MapPinAndCartContainer = styled.div`
   display: flex;
   flex-direction: row;
+  position: relative;
+  left: 5rem;
   gap: 1rem;
 `
 

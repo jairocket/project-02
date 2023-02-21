@@ -4,13 +4,14 @@ import { menu } from '../menu-data'
 
 interface SelectedCoffeeData {
   coffeeCart: SelectedCoffee[]
-  addCoffeeToCart: (name: string, cofeeUnits: number) => void
-  removeCoffeeFromCart: (name: string) => void
-  updateCoffeeUnits: (name: string, cofeeUnits: number) => void
   totalCart: number
   parsedPricedItems: string
   parsedBill: string
   parsedDelivery: string
+  addCoffeeToCart: (name: string, cofeeUnits: number) => void
+  removeCoffeeFromCart: (name: string) => void
+  updateCoffeeUnits: (name: string, cofeeUnits: number) => void
+  clearCart: () => void
 }
 
 interface SelectedCoffee {
@@ -42,6 +43,8 @@ export const CheckoutContextProvider = ({
 
     setCoffeeCart([...updatedCart])
   }
+
+  const clearCart = () => setCoffeeCart([])
 
   const totalCart =
     coffeeCart.length > 0
@@ -79,13 +82,14 @@ export const CheckoutContextProvider = ({
     <CheckoutContext.Provider
       value={{
         coffeeCart,
-        addCoffeeToCart,
-        removeCoffeeFromCart,
-        updateCoffeeUnits,
         totalCart,
         parsedPricedItems,
         parsedBill,
         parsedDelivery,
+        addCoffeeToCart,
+        removeCoffeeFromCart,
+        updateCoffeeUnits,
+        clearCart,
       }}
     >
       {children}

@@ -6,14 +6,17 @@ import { GlobalStyle } from './styles/globals'
 
 import { Router } from './Router'
 import { CheckoutContextProvider } from './contexts/checkoutContext'
+import { AddressContextProvider } from './contexts/addressContext'
 
 function App() {
   return (
     <BrowserRouter>
       <ThemeProvider theme={defaultTheme}>
         <CheckoutContextProvider>
-          <Header />
-          <Router />
+          <AddressContextProvider>
+            <Header />
+            <Router />
+          </AddressContextProvider>
         </CheckoutContextProvider>
         <GlobalStyle />
       </ThemeProvider>

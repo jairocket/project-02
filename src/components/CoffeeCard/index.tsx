@@ -34,12 +34,6 @@ export function CoffeeCard({
 
   const coffeeUnitsForm = useCoffeeUnitsForm()
 
-  // const { handleSubmit } = coffeeUnitsForm
-  // const onSubmit = (/* data: { amount: number } */) => {
-  //   // addCoffeeToCart(name, data.amount)
-  //   navigate('/checkout')
-  // }
-
   return (
     <CoffeeCardContainer>
       <CoffeeImageContainer>
@@ -53,7 +47,7 @@ export function CoffeeCard({
       <h6>{name}</h6>
       <p>{description}</p>
 
-      <FormContainer /*onSubmit={handleSubmit(onSubmit)}*/>
+      <FormContainer>
         <p>
           R$ <span>{`${price}`}</span>
         </p>

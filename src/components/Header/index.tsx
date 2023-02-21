@@ -10,6 +10,7 @@ import {
 import { defaultTheme } from '../../styles/Themes/default'
 import { useContext } from 'react'
 import { CheckoutContext } from '../../contexts/checkoutContext'
+import { NavLink } from 'react-router-dom'
 
 export function Header() {
   const { totalCart } = useContext(CheckoutContext)
@@ -21,10 +22,12 @@ export function Header() {
           <MapPin weight="fill" color={defaultTheme.purple} />
           <div>Salvador, BA</div>
         </MapPinContainer>
-        <ShoppingCartContainer>
-          <ShoppingCart weight="fill" color={defaultTheme['yellow-dark']} />
-        </ShoppingCartContainer>
-        <QuantityContainer>{totalCart}</QuantityContainer>
+        <NavLink to={'/checkout'}>
+          <ShoppingCartContainer>
+            <ShoppingCart weight="fill" color={defaultTheme['yellow-dark']} />
+          </ShoppingCartContainer>
+        </NavLink>
+        {totalCart > 0 && <QuantityContainer>{totalCart}</QuantityContainer>}
       </MapPinAndCartContainer>
     </HeaderContainer>
   )

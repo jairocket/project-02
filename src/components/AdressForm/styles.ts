@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 export const Form = styled.form`
+  display: flex;
   gap: 0.75rem;
   margin-bottom: 5rem;
 `
@@ -133,4 +134,11 @@ export const AddressFormTitle = styled.div`
       color: ${(props) => props.theme['text']};
     }
   }
+`
+export const CheckoutSummary = styled.div`
+  background-color: ${(props) => props.theme['card']};
+  border-radius: 6px 44px;
+  padding: 1.5rem;
+  height: fit-content;
+  width: 28rem;
 `
